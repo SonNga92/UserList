@@ -1,0 +1,38 @@
+.App {
+  text-align: center;
+}
+button {
+  border-radius: 5px;
+  padding: 10px;
+  margin: 0 5px;
+  font-size: 1.2em;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+
+.form-control {
+  margin: 20px 0;
+  font-weight: 700;
+}
+
+.form-control input {
+  border-radius: 5px;
+  width: 25%;
+  padding: 7px;
+  margin: 0 10px;
+  border: 1px solid #a1d5ff;
+}
+
+.submit {
+  border-radius: 5px;
+  padding: 10px;
+  margin: 0 5px;
+  font-size: 1.2em;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  border: none;
+  background-color: #34b100;
+}
