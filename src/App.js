@@ -49,22 +49,27 @@ function App() {
   }
   const showAdd = showAddUser;
 
+  const onClose = () => {
+    setShowAddUser(!showAddUser)
+  }
 
   return (
     <div className="App">
-      <div>
-        <h1>User Info</h1>
+      <div className="box">
+        <div>
+          <h1>User Info</h1>
 
-        <Button
-          color={showAdd ? '#34b100' : 'brown'}
-          text={showAdd ? ' Add User' : 'Close'}
-          onClick={onAdd}
-        />
+          <Button
+            color={'#34b100'}
+            text={'Add User'}
+            onClick={onAdd}
+          />
 
-        {!showAddUser && <AddUser onAdd={addUser} />}
+          {!showAddUser && <AddUser onAdd={addUser} onClose={onClose}/>}
+        </div>
+        {users.length > 0 ? <Users users={users} onDelete={deleteUser} onUpdate={updateUser} /> : <h3>No user</h3>}
       </div>
-      {users.length > 0 ? <Users users={users} onDelete={deleteUser} onUpdate={updateUser} /> : <h3>No user</h3>}
-    </div>
+      </div>
   );
 }
 

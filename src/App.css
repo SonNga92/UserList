@@ -1,38 +1,104 @@
-.App {
-  text-align: center;
-}
-button {
-  border-radius: 5px;
-  padding: 10px;
-  margin: 0 5px;
-  font-size: 1.2em;
-  font-weight: 700;
-  color: white;
-  cursor: pointer;
-  border: none;
+* {
+  box-sizing: border-box;
 }
 
+body {
+  color: #555;
+  background-color: #5B9EED;
+  font-family: sans-serif;
+}
+
+
+.box {
+  max-width: 410px;
+  margin: 50px auto;
+}
+.list {
+  background: white;
+  border-radius: 10px;
+  list-style: none;
+  padding: 10px 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);
+}
+.listItem{
+  display: flex;
+  margin: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.itemContent {
+  min-width: 244px;
+}
+.itemContent p{
+  margin: 7px 0 10px 0;
+}
+.itemContent h3{
+  margin: 10px 0 15px 0;
+}
 .form-control {
-  margin: 20px 0;
   font-weight: 700;
 }
 
 .form-control input {
   border-radius: 5px;
-  width: 25%;
-  padding: 7px;
-  margin: 0 10px;
-  border: 1px solid #a1d5ff;
+  padding: 9px;
+  margin: 7px 0;
+  border: 1px solid #003a6a;
 }
 
 .submit {
   border-radius: 5px;
   padding: 10px;
-  margin: 0 5px;
-  font-size: 1.2em;
-  font-weight: 700;
+  margin: 9px 0;
+  font-size: 1em;
+  font-weight: 500;
+  min-width: 100px;
   color: white;
   cursor: pointer;
   border: none;
   background-color: #34b100;
+}
+.itemButton{
+  align-items: right;
+}
+button {
+  border-radius: 5px;
+  padding: 10px;
+  margin: 9px 0;
+  font-size: 0.8em;
+  font-weight: 500;
+  color: white;
+  cursor: pointer;
+  border: none;
+  min-width: 100px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3), 0 2px 3px 0 rgba(0, 0, 0, 0.25);
+}
+
+.addUserBox{
+  border-radius: 20px;
+  padding: 32px;
+  min-width: 300px;
+  text-align: center;
+  background: #fff;
+  position: fixed;
+  top:50%;
+  left:50%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);
+  transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%)
+}
+
+.addUserAll {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: rgba(0,0,0, 0.5);
+}
+.close {
+
 }

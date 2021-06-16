@@ -1,6 +1,7 @@
 import { useState } from "react"
+import Button from "./Button"
 
-const AddUser = ({ onAdd }) => {
+const AddUser = ({ onAdd, onClose }) => {
   const [name, setName] = useState('')
   const [age, setAge] = useState('')
   const [address, setAddress] = useState('')
@@ -18,43 +19,48 @@ const AddUser = ({ onAdd }) => {
     setName('');
     setAge('');
     setAddress('');
+    onClick()
   }
 
+  const onClick = () => onClose();
+
   return (
-    <form onSubmit={onSubmit}>
-      <div className='form-control'>
-        <label>Name:</label>
-        <input
-          type='text'
-          value={name}
-          placeholder='Your Name'
-          onChange={(e) => setName(e.target.value)}
-        />
+    <div className='addUserAll'>
+      <div className='addUserBox'>
+        <form onSubmit={onSubmit} className='addUserForm'>
+          <div className='form-control'>
+            <input
+              type='text'
+              value={name}
+              placeholder='Name:'
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div className='form-control'>
+            <input
+              type='number'
+              value={age}
+              placeholder='Age:'
+              onChange={(e) => setAge(e.target.value)}
+            />
+          </div>
+          <div className='form-control'>
+            <input
+              type='text'
+              value={address}
+              placeholder='Address:'
+              onChange={(e) => setAddress(e.target.value)}
+            />
+          </div>
+          <input
+            className='submit'
+            type='submit'
+            value='Save'
+          />
+        </form>
+        <Button text={'Close'} onClick={onClick} color={'#b5b5b5'} />
       </div>
-      <div className='form-control'>
-        <label>Age:</label>
-        <input
-          type='number'
-          value={age}
-          placeholder='123'
-          onChange={(e) => setAge(e.target.value)}
-        />
-      </div>
-      <div className='form-control'>
-        <label>Address:</label>
-        <input
-          type='text'
-          value={address}
-          placeholder='123 asd'
-          onChange={(e) => setAddress(e.target.value)}
-        />
-      </div>
-      <input
-        className='submit'
-        type='submit'
-        value='Save'
-      />
-    </form>
+    </div>
   )
 }
 
