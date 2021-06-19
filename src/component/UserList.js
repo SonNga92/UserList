@@ -2,15 +2,16 @@ import { useState } from "react";
 import Button from "./Button"
 import UpdateUser from "./UpdateUser";
 
-const UserList = ({ user, onDelete, onSubmit }) => {
-  const [showUpdate, setShowUpdate] = useState('true');
 
-  const onUp = () => {
+const UserList = ({ user, onDelete, onUpdate }) => {
+  const [showUpdate, setShowUpdate] = useState('false');
+
+  const onShowUp = () => onCloseUpdate()
+
+  // show Update form
+  const onCloseUpdate = () => {
     setShowUpdate(!showUpdate)
   }
-
-  const showUp = showUpdate;
-
   return (
     <div className='listItem'>
       <div className='itemContent'>
@@ -19,14 +20,15 @@ const UserList = ({ user, onDelete, onSubmit }) => {
         <p>Address: {user.address}</p>
       </div>
       <div className='itemButton'>
-        <Button onClick={() => (onDelete(user.id))} text='Delete' color='brown' />
         <Button
-          onClick={onUp}
-          text={showUp ? 'Update' : 'Close'}
-          color={showUp ? '#0052e6' : 'brown'}
+          onClick={() => { onShowUp() }}
+          onClose={onCloseUpdate}
+          text={'Update'}
+          color={'#0052e6'}
         />
+        <Button onClick={() => (onDelete(user.id))} text='Delete' color='brown' />
       </div>
-      {!showUp && <UpdateUser />}
+      {!showUpdate && <UpdateUser user={user} onClose={onCloseUpdate} onUpdate={onUpdate} />}
     </div>
   )
 }

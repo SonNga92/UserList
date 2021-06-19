@@ -1,6 +1,6 @@
 import UserList from './UserList'
 
-const Users = ({ users, onDelete, updateUser }) => {
+const Users = ({ users, onDelete, onUpdate, onClose }) => {
 
   return (
     <div className='list'>
@@ -9,6 +9,8 @@ const Users = ({ users, onDelete, updateUser }) => {
           key={user.id}
           user={user}
           onDelete={onDelete}
+          onClose={onClose}
+          onUpdate={onUpdate}
         />
       ))}
     </div>

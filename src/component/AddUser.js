@@ -22,12 +22,15 @@ const AddUser = ({ onAdd, onClose }) => {
     onClick()
   }
 
+  ///close form
   const onClick = () => onClose();
 
   return (
     <div className='addUserAll'>
       <div className='addUserBox'>
         <form onSubmit={onSubmit} className='addUserForm'>
+          <h2>Add new user: {name}</h2>
+
           <div className='form-control'>
             <input
               type='text'

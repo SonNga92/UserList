@@ -4,7 +4,6 @@
 
 body {
   color: #555;
-  background-color: #5B9EED;
   font-family: sans-serif;
 }
 
@@ -14,6 +13,7 @@ body {
   margin: 50px auto;
 }
 .list {
+  margin:  20px 0;
   background: white;
   border-radius: 10px;
   list-style: none;
@@ -39,10 +39,11 @@ body {
   font-weight: 700;
 }
 
-.form-control input {
+input {
   border-radius: 5px;
   padding: 9px;
   margin: 7px 0;
+  width: 100%;
   border: 1px solid #003a6a;
 }
 
@@ -75,9 +76,11 @@ button {
 }
 
 .addUserBox{
+  word-break: break-word;
   border-radius: 20px;
   padding: 32px;
-  min-width: 300px;
+  width: 300px;
+  max-width: 300px;
   text-align: center;
   background: #fff;
   position: fixed;
@@ -98,7 +101,4 @@ button {
   bottom: 0;
   margin: auto;
   background-color: rgba(0,0,0, 0.5);
-}
-.close {
-
 }

@@ -1,60 +1,61 @@
 import { useState } from "react"
+import Button from "./Button"
 
-const UpdateUser = ({ user, onUpdate }) => {
-    const [name, setName] = useState('')
-    const [age, setAge] = useState('')
-    const [address, setAddress] = useState('')
+const UpdateUser = ({ user, onUpdate, onClose }) => {
+  const [name, setName] = useState(user.name)
+  const [age, setAge] = useState(user.age)
+  const [address, setAddress] = useState(user.address)
 
-    const onSubmit = (e) => {
-        e.preventDefault()
+  const onSubmit = (e) => {
+    e.preventDefault()
+    const { id, createdAt } = user
+    onUpdate({ id, createdAt, name, age, address })
 
-        if (!name) {
-            alert('Nhap user');
-            return
-        }
+    setName('');
+    setAge('');
+    setAddress('');
+    onClick()
+  }
 
-        onUpdate({ name, age, address })
-    }
+  ///close form
+  const onClick = () => onClose();
 
-    return (
+  return (
+    <div className='addUserAll'>
+      <div className='addUserBox'>
         <form onSubmit={onSubmit}>
-            <p>--------</p>
-            <div className='form-control'>
-                <h3>Update User: {name}</h3>
-                <label>Name:</label>
-                <input
-                    type='text'
-                    value={name}
-                    placeholder='Your Name'
-                    onChange={(e) => setName(e.target.value)}
-                />
-            </div>
-            <div className='form-control'>
-                <label>Age:</label>
-                <input
-                    type='number'
-                    value={age}
-                    placeholder='123'
-                    onChange={(e) => setAge(e.target.value)}
-                />
-            </div>
-            <div className='form-control'>
-                <label>Address:</label>
-                <input
-                    type='text'
-                    value={address}
-                    placeholder='123 asd'
-                    onChange={(e) => setAddress(e.target.value)}
-                />
-            </div>
+          <h2>Update User: {user.name}</h2>
+          <div className='form-control'>
             <input
-                className='submit'
-                type='submit'
-                value='Save'
+              type='text'
+              value={name}
+              onChange={e => (setName(e.target.value))}
             />
-            <p>--------</p>
+          </div>
+          <div className='form-control'>
+            <input
+              type='number'
+              value={age}
+              onChange={e => (setAge(e.target.value))}
+            />
+          </div>
+          <div className='form-control'>
+            <input
+              type='text'
+              value={address}
+              onChange={e => (setAddress(e.target.value))}
+            />
+          </div>
+          <input
+            className='submit'
+            type='submit'
+            value='Save'
+          />
         </form>
-    )
+        <Button text={'Close'} onClick={onClick} color={'#b5b5b5'} />
+      </div>
+    </div>
+  )
 }
 
 export default UpdateUser

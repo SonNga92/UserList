@@ -3,19 +3,20 @@ import './App.css';
 import Users from './component/Users'
 import Button from './component/Button';
 import AddUser from './component/AddUser';
-import UpdateUser from './component/UpdateUser'
 
 function App() {
   const [showAddUser, setShowAddUser] = useState('false')
   const [users, setUsers] = useState([])
+  const [reload, setReload] = useState()
 
   useEffect(() => {
     const getUsers = async () => {
       const usersApi = await fetchUsers();
       setUsers(usersApi)
     }
+
     getUsers();
-  }, [])
+  }, [reload])
 
   const fetchUsers = async () => {
     const res = await fetch('https://6041af897f50e000173aae0c.mockapi.io/users')
@@ -24,32 +25,42 @@ function App() {
   }
 
   // Add
-  const addUser = (user) => {
-    const id = Math.floor(Math.random() * 1000);
-    const now = new Date();
-    const createdAt = now.toJSON();
-    const newUser = { id, createdAt, ...user }
-    setUsers([newUser, ...users])
+  const addUser = async (user) => {
+    await fetch(`https://6041af897f50e000173aae0c.mockapi.io/users/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    })
+    setReload((prev) => prev + 1)
   }
 
-  // Update
-  const updateUser = (user) => {
-    const update = setUsers()
+  //Update 
+  const getUserUpdate = async (userUp) => {
+    setUsers(users.map((user) => (user.id === userUp.id ? userUp : user)));
+
+    await fetch(`https://6041af897f50e000173aae0c.mockapi.io/users/${userUp.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(userUp)
+    })
+    setReload((prev) => prev + 1)
   }
 
   // Delete
-  const deleteUser = (id) => {
+  const deleteUser = async (id) => {
+    await fetch(`https://6041af897f50e000173aae0c.mockapi.io/users/${id}`, {
+      method: 'DELETE'
+    })
+
     setUsers(users.filter((user) => (user.id !== id)))
   }
 
-
   // show Add form
   const onAdd = () => {
-    setShowAddUser(!showAddUser)
-  }
-  const showAdd = showAddUser;
-
-  const onClose = () => {
     setShowAddUser(!showAddUser)
   }
 
@@ -57,6 +68,8 @@ function App() {
     <div className="App">
       <div className="box">
         <div>
+
+          <input type='search' placeholder='Search user:' />
           <h1>User Info</h1>
 
           <Button
@@ -65,11 +78,11 @@ function App() {
             onClick={onAdd}
           />
 
-          {!showAddUser && <AddUser onAdd={addUser} onClose={onClose}/>}
+          {!showAddUser && <AddUser onAdd={addUser} onClose={onAdd} />}
         </div>
-        {users.length > 0 ? <Users users={users} onDelete={deleteUser} onUpdate={updateUser} /> : <h3>No user</h3>}
+        {users.length > 0 ? <Users users={users} onDelete={deleteUser} onUpdate={getUserUpdate} /> : <h3>No user</h3>}
       </div>
-      </div>
+    </div>
   );
 }
 
